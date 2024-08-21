@@ -1,0 +1,19 @@
+{
+    "name": "lucasxciv/deribit-tooling",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Lucas de Oliveira",
+            "email": "mail@lucasxciv.dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FuturesSpread\\": "src/"
+        }
+    },
+    "require": {
+        "irazasyed/telegram-bot-sdk": "^3.14",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

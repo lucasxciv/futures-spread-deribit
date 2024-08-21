@@ -1,0 +1,5 @@
+.idea
+cache.json
+.env
+
+/vendor/
