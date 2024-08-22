@@ -1,0 +1,91 @@
+# https://help.github.com/en/categories/automating-your-workflow-with-github-actions
+
+name: "Continuous Integration"
+
+on:
+  pull_request:
+  branches:
+    - "main"
+
+jobs:
+  phpunit:
+    name: "PHPUnit tests"
+
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        dependencies:
+          - "locked"
+        php-version:
+          - "8.3"
+        operating-system:
+          - "ubuntu-latest"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@2.31.1"
+        with:
+          coverage: "pcov"
+          php-version: "${{ matrix.php-version }}"
+          extensions: intl, sodium
+          ini-values: memory_limit=-1
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@3.0.0"
+        with:
+          dependency-versions: "${{ matrix.dependencies }}"
+
+      - name: "Install CI dependencies"
+        uses: "ramsey/composer-install@3.0.0"
+        with:
+          dependency-versions: "${{ matrix.dependencies }}"
+          working-directory: "tools"
+          custom-cache-suffix: "ci"
+
+      - name: "Tests"
+        run: "vendor/bin/phpunit tests/ --testdox --colors"
+
+  static-analysis-phpstan:
+    name: "Static Analysis by PHPStan"
+
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      matrix:
+        dependencies:
+          - "locked"
+        php-version:
+          - "8.3"
+        operating-system:
+          - "ubuntu-latest"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@2.31.1"
+        with:
+          coverage: "none"
+          php-version: "${{ matrix.php-version }}"
+          extensions: intl, sodium
+          ini-values: memory_limit=-1
+
+      - name: "Install dependencies"
+        uses: "ramsey/composer-install@3.0.0"
+        with:
+          dependency-versions: "${{ matrix.dependencies }}"
+
+      - name: "Install CI dependencies"
+        uses: "ramsey/composer-install@3.0.0"
+        with:
+          dependency-versions: "${{ matrix.dependencies }}"
+          working-directory: "tools"
+          custom-cache-suffix: "ci"
+
+      - name: "PHPStan"
+        run: "tools/vendor/bin/phpstan analyse src tests --memory-limit=-1"
