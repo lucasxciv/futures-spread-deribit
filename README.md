@@ -16,7 +16,7 @@ Composer and PHP ^8.3, or Docker.
 
 ## Installation
 
-Create the file `.env` based on the `.env.example`, and `.env.production` to use in the Docker container.
+Create the files `.env` and `.env.production` (used in the Docker container) based on the `.env.example`.
 
 ### Locally
 
