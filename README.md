@@ -46,4 +46,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
-**Futures Spread Deribit** project is released under the MIT License. Please see [License File](LICENSE) for more information.
+This project is released under the MIT License. Please see [License File](LICENSE) for more information.
