@@ -42,13 +42,6 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 
-      - name: "Install CI dependencies"
-        uses: "ramsey/composer-install@3.0.0"
-        with:
-          dependency-versions: "${{ matrix.dependencies }}"
-          working-directory: "tools"
-          custom-cache-suffix: "ci"
-
       - name: "Tests"
         run: "vendor/bin/phpunit tests/ --testdox --colors"
 
@@ -82,13 +75,6 @@ jobs:
         uses: "ramsey/composer-install@3.0.0"
         with:
           dependency-versions: "${{ matrix.dependencies }}"
-
-      - name: "Install CI dependencies"
-        uses: "ramsey/composer-install@3.0.0"
-        with:
-          dependency-versions: "${{ matrix.dependencies }}"
-          working-directory: "tools"
-          custom-cache-suffix: "ci"
 
       - name: "PHPStan"
         run: "tools/vendor/bin/phpstan analyse src tests --memory-limit=-1"
