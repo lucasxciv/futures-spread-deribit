@@ -1,6 +1,7 @@
 .idea
 /cache.json
 .env
+.env.production
 .php-cs-fixer.cache
 
 /vendor/

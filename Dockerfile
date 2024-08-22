@@ -17,6 +17,7 @@ RUN apt update && apt install -y \
 
 # Copy application code, skipping files based on .dockerignore
 COPY . /var/www/html
+COPY .env.production /var/www/html/.env
 
 # Install Composer dependencies
 RUN --mount=type=cache,target=/root/.composer/cache composer install --no-dev
