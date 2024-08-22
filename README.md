@@ -14,12 +14,12 @@ To install and run the project you need to have Composer and PHP ^8.3 installed 
 
 ### Locally
 
-Install the Composer dependencies:
+Install dependencies:
 ```
 composer install
 ```
 
-Start the local server:
+Start server:
 ```
 php -S localhost:8000 -t public/
 ```
@@ -28,12 +28,12 @@ Access: http://localhost:8000
 
 ### Docker
 
-Build the image:
+Build image:
 ```
 docker build . -t futures-spread-deribit
 ```
 
-Run the container:
+Run container:
 ```
 docker run -p 8080:8080 futures-spread-deribit
 ```
