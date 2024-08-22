@@ -6,7 +6,7 @@ Web application to help practice the studies of the futures' spread strategy.
 
 ## Requirements
 
-To install and run the project you need to have the PHP 8.3 or higher installed on your machine, or you can use Docker.
+To install and run the project you need to have Composer and PHP ^8.3 installed on your machine, or you can use Docker.
 
 ## Installation
 
@@ -22,4 +22,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
-Futures Spread Deribit project is released under the MIT License. Please see [License File](LICENSE) for more information.
+**Futures Spread Deribit** project is released under the MIT License. Please see [License File](LICENSE) for more information.
