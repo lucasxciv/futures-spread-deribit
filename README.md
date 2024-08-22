@@ -8,7 +8,7 @@ NOTE: it uses a [polling strategy](https://en.wikipedia.org/wiki/Polling_(comput
 
 ## Requirements
 
-To install and run the project you need to have Composer and PHP ^8.3 installed on your machine, or you can use Docker.
+Composer and PHP ^8.3, or Docker.
 
 ## Installation
 
