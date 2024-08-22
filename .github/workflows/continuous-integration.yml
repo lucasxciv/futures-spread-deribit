@@ -77,4 +77,4 @@ jobs:
           dependency-versions: "${{ matrix.dependencies }}"
 
       - name: "PHPStan"
-        run: "tools/vendor/bin/phpstan analyse src tests --memory-limit=-1"
+        run: "vendor/bin/phpstan analyse -l 5 src tests --memory-limit=-1"
