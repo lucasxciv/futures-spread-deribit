@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace FuturesSpread\Calculation;
 
 use ArrayObject;

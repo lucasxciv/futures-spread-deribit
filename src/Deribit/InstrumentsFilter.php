@@ -9,5 +9,6 @@ final readonly class InstrumentsFilter
     public function __construct(
         public string $currency,
         public string $kind,
-    ) { }
+    ) {
+    }
 }

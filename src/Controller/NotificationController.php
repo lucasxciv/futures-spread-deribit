@@ -17,7 +17,8 @@ final readonly class NotificationController
         private NotificationStatus $status,
         private NotificationNextStatus $nextStatus,
         private NotificationMessage $message,
-    ) {}
+    ) {
+    }
 
     /**
      * @return array{message: string, status: array{rsiState: string, date: string, rsi: float, btc: float}}

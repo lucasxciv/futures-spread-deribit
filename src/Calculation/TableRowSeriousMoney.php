@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Calculation;
 
-readonly final class TableRowSeriousMoney
+final readonly class TableRowSeriousMoney
 {
     public TableRowSeriousMoney $firstOperation;
     public StrategyTypeSeriousMoney $strategy;

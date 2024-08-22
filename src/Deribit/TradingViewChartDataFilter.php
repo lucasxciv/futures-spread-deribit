@@ -6,7 +6,7 @@ namespace FuturesSpread\Deribit;
 
 use DateTimeImmutable;
 
-readonly final class TradingViewChartDataFilter
+final readonly class TradingViewChartDataFilter
 {
     public function __construct(
         public DateTimeImmutable $startTimestamp,

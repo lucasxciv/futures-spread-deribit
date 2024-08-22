@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace FuturesSpread\View;
 
 final readonly class NumberBrFormat
