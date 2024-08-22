@@ -1,5 +1,9 @@
 # Futures Spread Deribit 💰
 
+[![Continuous Integration](https://github.com/lucasxciv/futures-spread-deribit/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/lucasxciv/futures-spread-deribit/actions/workflows/continuous-integration.yml)
+[![Hits-of-Code](https://hitsofcode.com/github/lucasxciv/futures-spread-deribit?branch=main)](https://hitsofcode.com/github/lucasxciv/futures-spread-deribit)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/lucasxciv/futures-spread-deribit/blob/main/LICENSE)
+
 Web application to help practice the studies of the futures' spread strategy.
 
 > *Spread trades are executed to attempt to profit from the widening or narrowing of the spread, rather than from movement in the prices of the legs directly. Spreads are either "bought" or "sold" depending on whether the trade will profit from the widening or narrowing of the spread, [Spread trade - Wikipedia.](https://en.wikipedia.org/wiki/Spread_trade)*
