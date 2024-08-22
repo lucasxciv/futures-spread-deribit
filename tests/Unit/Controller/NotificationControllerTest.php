@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace FuturesSpreadUnitTest\Controller;
 
-use DateTimeImmutable;
 use FuturesSpread\Controller\NotificationController;
 use FuturesSpread\Notification\NotificationMessage;
 use FuturesSpread\Notification\NotificationNextStatus;
@@ -14,6 +13,11 @@ use PHPUnit\Framework\TestCase;
 use Telegram\Bot\Api;
 use Telegram\Bot\Objects\Chat;
 
+/**
+ * @internal
+ *
+ * @coversNothing
+ */
 final class NotificationControllerTest extends TestCase
 {
     #[Test]
@@ -26,7 +30,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 08:10:00'),
+                new \DateTimeImmutable('2024-01-02 08:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([50, 52])
             ),
@@ -60,7 +64,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 21:10:00'),
+                new \DateTimeImmutable('2024-01-02 21:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([70, 72])
             ),
@@ -94,7 +98,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 21:10:00'),
+                new \DateTimeImmutable('2024-01-02 21:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([30, 28])
             ),
@@ -130,7 +134,8 @@ final class NotificationControllerTest extends TestCase
 
         $apiTelegram = $this->createStub(Api::class);
         $apiTelegram->method('getChat')
-            ->willReturn(new Chat(['description' => 'Future spread | ' . $storedBase64]));
+            ->willReturn(new Chat(['description' => 'Future spread | '.$storedBase64]))
+        ;
 
         $controller = new NotificationController(
             $status = new NotificationStatus(
@@ -139,7 +144,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 21:10:00'),
+                new \DateTimeImmutable('2024-01-02 21:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([70, 72])
             ),
@@ -175,7 +180,8 @@ final class NotificationControllerTest extends TestCase
 
         $apiTelegram = $this->createStub(Api::class);
         $apiTelegram->method('getChat')
-            ->willReturn(new Chat(['description' => 'Future spread | ' . $storedBase64]));
+            ->willReturn(new Chat(['description' => 'Future spread | '.$storedBase64]))
+        ;
 
         $controller = new NotificationController(
             $status = new NotificationStatus(
@@ -184,7 +190,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 21:10:00'),
+                new \DateTimeImmutable('2024-01-02 21:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([30, 28])
             ),
@@ -218,7 +224,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 07:10:00'),
+                new \DateTimeImmutable('2024-01-02 07:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([50, 52])
             ),
@@ -254,7 +260,8 @@ final class NotificationControllerTest extends TestCase
 
         $apiTelegram = $this->createStub(Api::class);
         $apiTelegram->method('getChat')
-            ->willReturn(new Chat(['description' => 'Future spread | ' . $storedBase64]));
+            ->willReturn(new Chat(['description' => 'Future spread | '.$storedBase64]))
+        ;
 
         $controller = new NotificationController(
             $status = new NotificationStatus(
@@ -263,7 +270,7 @@ final class NotificationControllerTest extends TestCase
             ),
             new NotificationNextStatus(
                 $status,
-                new DateTimeImmutable('2024-01-02 08:10:00'),
+                new \DateTimeImmutable('2024-01-02 08:10:00'),
                 new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
                 new \ArrayObject([50, 52])
             ),

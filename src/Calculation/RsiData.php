@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Calculation;
 
-use ArrayObject;
-use InvalidArgumentException;
-
-final class RsiData extends ArrayObject
+final class RsiData extends \ArrayObject
 {
-    public function __construct(ArrayObject $prices, int $period = 14)
+    public function __construct(\ArrayObject $prices, int $period = 14)
     {
         parent::__construct($this->generateRsi($prices, $period));
     }
 
-    private function generateRsi(ArrayObject $prices, int $period): array
+    private function generateRsi(\ArrayObject $prices, int $period): array
     {
         $arrayKeys = array_keys($prices->getArrayCopy());
         $rsiValues = [];
@@ -22,11 +19,11 @@ final class RsiData extends ArrayObject
         $lossValues = [];
 
         if ($prices->count() < $period + 1) {
-            throw new InvalidArgumentException('Array size must be at least period + 1');
+            throw new \InvalidArgumentException('Array size must be at least period + 1');
         }
 
         // Calculate initial gain and loss for the first period
-        for ($i = 1; $i <= $period; $i++) {
+        for ($i = 1; $i <= $period; ++$i) {
             $priceDiff = $prices->offsetGet($arrayKeys[$i]) - $prices->offsetGet($arrayKeys[$i - 1]);
             if ($priceDiff > 0) {
                 $gainValues[] = $priceDiff;
@@ -42,7 +39,7 @@ final class RsiData extends ArrayObject
         $avgLoss = array_sum(array_slice($lossValues, 0, $period)) / $period;
 
         // Calculate RS and RSI for subsequent elements
-        for ($i = $period, $iMax = $prices->count(); $i < $iMax; $i++) {
+        for ($i = $period, $iMax = $prices->count(); $i < $iMax; ++$i) {
             $priceDiff = $prices->offsetGet($arrayKeys[$i]) - $prices->offsetGet($arrayKeys[$i - 1]);
 
             if ($priceDiff > 0) {
@@ -58,7 +55,7 @@ final class RsiData extends ArrayObject
             $avgLoss = (($avgLoss * ($period - 1)) + $loss) / $period;
 
             // Calculate RS (Relative Strength)
-            if ($avgLoss === 0) {
+            if (0 === $avgLoss) {
                 $rs = 100; // To avoid division by zero error
             } else {
                 $rs = $avgGain / $avgLoss;

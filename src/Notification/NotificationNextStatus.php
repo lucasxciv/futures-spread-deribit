@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Notification;
 
-use ArrayObject;
-use DateTimeImmutable;
 use FuturesSpread\Calculation\RsiThresholdTypeSeriousMoney;
 
 final readonly class NotificationNextStatus
@@ -22,9 +20,9 @@ final readonly class NotificationNextStatus
 
     public function __construct(
         public NotificationStatus $status,
-        public DateTimeImmutable $time,
-        ArrayObject $btcData,
-        ArrayObject $rsiDataBtc
+        public \DateTimeImmutable $time,
+        \ArrayObject $btcData,
+        \ArrayObject $rsiDataBtc
     ) {
         $dates = array_keys($btcData->getArrayCopy());
         $this->date = end($dates);
@@ -49,7 +47,7 @@ final readonly class NotificationNextStatus
 
     private function hasCrossedBand(): bool
     {
-        $statusWasInBetweenBands = $this->status->rsiState === NotificationRsiStateType::InBetweenBands;
+        $statusWasInBetweenBands = NotificationRsiStateType::InBetweenBands === $this->status->rsiState;
 
         $crossedUpperBand = $statusWasInBetweenBands && $this->rsi > RsiThresholdTypeSeriousMoney::UpperBand->value;
         $crossedLowerBand = $statusWasInBetweenBands && $this->rsi < RsiThresholdTypeSeriousMoney::LowerBand->value;
@@ -59,7 +57,7 @@ final readonly class NotificationNextStatus
 
     private function isOutOfTimeRange(): bool
     {
-        $hour = (int)$this->time->format('H');
+        $hour = (int) $this->time->format('H');
 
         return $hour < self::TIME_RANGE_START || $hour > self::TIME_RANGE_END;
     }

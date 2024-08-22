@@ -8,8 +8,6 @@ use FuturesSpread\Notification\NotificationActionType;
 use FuturesSpread\Notification\NotificationMessage;
 use FuturesSpread\Notification\NotificationNextStatus;
 use FuturesSpread\Notification\NotificationStatus;
-use JsonException;
-use LogicException;
 
 final readonly class NotificationController
 {
@@ -17,16 +15,16 @@ final readonly class NotificationController
         private NotificationStatus $status,
         private NotificationNextStatus $nextStatus,
         private NotificationMessage $message,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array{message: string, status: array{rsiState: string, date: string, rsi: float, btc: float}}
-     * @throws JsonException
+     *
+     * @throws \JsonException
      */
     public function handle(): array
     {
-        if ($this->nextStatus->actionType === NotificationActionType::Notify) {
+        if (NotificationActionType::Notify === $this->nextStatus->actionType) {
             $this->message->send($this->nextStatus, $this->status);
 
             $this->status->update(
@@ -42,7 +40,7 @@ final readonly class NotificationController
             ];
         }
 
-        if ($this->nextStatus->actionType === NotificationActionType::NotInTimeRange) {
+        if (NotificationActionType::NotInTimeRange === $this->nextStatus->actionType) {
             $this->status->update($this->nextStatus->rsiState);
 
             return [
@@ -56,13 +54,13 @@ final readonly class NotificationController
             ];
         }
 
-        if ($this->nextStatus->actionType === NotificationActionType::AlreadyNotified) {
+        if (NotificationActionType::AlreadyNotified === $this->nextStatus->actionType) {
             return [
                 'message' => 'Already sent today.',
                 'status' => $this->status->jsonSerialize(),
             ];
         }
 
-        throw new LogicException('Invalid action type.');
+        throw new \LogicException('Invalid action type.');
     }
 }

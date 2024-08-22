@@ -9,9 +9,7 @@ use Telegram\Bot\Api;
 
 final readonly class NotificationMessage
 {
-    public function __construct(private Api $telegram, private string $chatId)
-    {
-    }
+    public function __construct(private Api $telegram, private string $chatId) {}
 
     public function send(NotificationNextStatus $nextStatus, NotificationStatus $status): void
     {
@@ -35,8 +33,8 @@ final readonly class NotificationMessage
         Monitoramento de BTC e RSI 📈
         
         Data: <b>{$nextStatus->dateBr}</b>
-        RSI: <b>{$nextStatus->rsi}</b>$emojiRsi
-        BTC: <b>\${$btcMoney}</b>$emojiBtc
+        RSI: <b>{$nextStatus->rsi}</b>{$emojiRsi}
+        BTC: <b>\${$btcMoney}</b>{$emojiBtc}
         
         Via: https://deribit-tooling.fly.dev
         HTML;

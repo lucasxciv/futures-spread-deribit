@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Deribit;
 
-use ArrayObject;
 use FuturesSpread\Http\HttpRequest;
 
-final class Instruments extends ArrayObject
+final class Instruments extends \ArrayObject
 {
     public function __construct(private HttpRequest $httpRequest, InstrumentsFilter $filter)
     {
@@ -23,7 +22,7 @@ final class Instruments extends ArrayObject
 
         $instruments = [];
         foreach ($data['result'] as $instrument) {
-            if ($instrument['settlement_period'] === 'perpetual' || $instrument['expiration_timestamp'] < time()) {
+            if ('perpetual' === $instrument['settlement_period'] || $instrument['expiration_timestamp'] < time()) {
                 continue;
             }
             $instruments = [$instrument['instrument_name'], ...$instruments];

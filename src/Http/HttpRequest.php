@@ -10,18 +10,19 @@ final class HttpRequest
 
     public function make(string $url, array $params): array
     {
-        $cachingFile = __DIR__ . '/../../cache/cache.json';
+        $cachingFile = __DIR__.'/../../cache/cache.json';
 
         if (!file_exists($cachingFile)) {
             file_put_contents($cachingFile, json_encode(['time' => 0], JSON_THROW_ON_ERROR));
         }
 
-        $requestUrl = $url . '?' . http_build_query($params);
+        $requestUrl = $url.'?'.http_build_query($params);
         $cached = json_decode(file_get_contents($cachingFile), true, 512, JSON_THROW_ON_ERROR);
-        $cacheKey = md5($url . ($params['instrument_name'] ?? ''));
+        $cacheKey = md5($url.($params['instrument_name'] ?? ''));
 
         if (isset($cached[$cacheKey]['time']) && time() - $cached[$cacheKey]['time'] < self::CACHE_TIME) {
-            error_log('Using cache for ' . $requestUrl);
+            error_log('Using cache for '.$requestUrl);
+
             return $cached[$cacheKey];
         }
 

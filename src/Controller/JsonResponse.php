@@ -6,9 +6,7 @@ namespace FuturesSpread\Controller;
 
 final readonly class JsonResponse
 {
-    public function __construct(private NotificationController $controller)
-    {
-    }
+    public function __construct(private NotificationController $controller) {}
 
     public function __toString(): string
     {

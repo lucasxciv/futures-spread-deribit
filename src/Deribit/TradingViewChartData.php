@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Deribit;
 
-use ArrayObject;
 use FuturesSpread\Http\HttpRequest;
 
-final class TradingViewChartData extends ArrayObject
+final class TradingViewChartData extends \ArrayObject
 {
     public function __construct(private readonly HttpRequest $httpRequest, TradingViewChartDataFilter $filter)
     {
@@ -25,7 +24,7 @@ final class TradingViewChartData extends ArrayObject
 
         $iteratorData = [];
         foreach ($data['result']['ticks'] as $key => $tick) {
-            $iteratorData[date('Y-m-d', (int)substr((string)$tick, 0, 10))] = $data['result']['close'][$key];
+            $iteratorData[date('Y-m-d', (int) substr((string) $tick, 0, 10))] = $data['result']['close'][$key];
         }
 
         return $iteratorData;

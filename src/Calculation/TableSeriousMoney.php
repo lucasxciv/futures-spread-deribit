@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Calculation;
 
-use ArrayObject;
-
-final class TableSeriousMoney extends ArrayObject
+final class TableSeriousMoney extends \ArrayObject
 {
-    /** @var ArrayObject<string> */
-    private ArrayObject $dates;
+    /** @var \ArrayObject<string> */
+    private \ArrayObject $dates;
 
     public function __construct(
-        ArrayObject $spreadData,
-        ArrayObject $futureData,
-        ArrayObject $perpetualChartData,
-        ArrayObject $rsiBtcChartData
+        \ArrayObject $spreadData,
+        \ArrayObject $futureData,
+        \ArrayObject $perpetualChartData,
+        \ArrayObject $rsiBtcChartData
     ) {
         parent::__construct(
             $this->generateTableData(
@@ -28,13 +26,13 @@ final class TableSeriousMoney extends ArrayObject
     }
 
     private function generateTableData(
-        ArrayObject $spreadData,
-        ArrayObject $futureData,
-        ArrayObject $perpetualChartData,
-        ArrayObject $rsiBtcChartData
-    ): ArrayObject {
-        $this->dates = new ArrayObject(array_keys($spreadData->getArrayCopy()));
-        $tableData = new ArrayObject();
+        \ArrayObject $spreadData,
+        \ArrayObject $futureData,
+        \ArrayObject $perpetualChartData,
+        \ArrayObject $rsiBtcChartData
+    ): \ArrayObject {
+        $this->dates = new \ArrayObject(array_keys($spreadData->getArrayCopy()));
+        $tableData = new \ArrayObject();
 
         foreach ($this->dates as $key => $date) {
             $rsiValue = $rsiBtcChartData->offsetGet($key);
@@ -42,7 +40,7 @@ final class TableSeriousMoney extends ArrayObject
 
             $strategy = $this->evaluateStrategy($key, $rsiValue, $previousRow);
 
-            if ($strategy === StrategyTypeSeriousMoney::Skip) {
+            if (StrategyTypeSeriousMoney::Skip === $strategy) {
                 continue;
             }
 
@@ -66,13 +64,13 @@ final class TableSeriousMoney extends ArrayObject
             return StrategyTypeSeriousMoney::Wait;
         }
 
-        if ((!$previousRow || $previousRow->strategy === StrategyTypeSeriousMoney::Sell)
+        if ((!$previousRow || StrategyTypeSeriousMoney::Sell === $previousRow->strategy)
             && $rsiValue < RsiThresholdTypeSeriousMoney::LowerBand->value
         ) {
             return StrategyTypeSeriousMoney::Buy;
         }
 
-        if ((!$previousRow || $previousRow?->strategy === StrategyTypeSeriousMoney::Buy)
+        if ((!$previousRow || StrategyTypeSeriousMoney::Buy === $previousRow?->strategy)
             && $rsiValue > RsiThresholdTypeSeriousMoney::UpperBand->value
         ) {
             return StrategyTypeSeriousMoney::Sell;
@@ -81,7 +79,7 @@ final class TableSeriousMoney extends ArrayObject
         return StrategyTypeSeriousMoney::Skip;
     }
 
-    private function getPreviousRow(ArrayObject $tableData): ?TableRowSeriousMoney
+    private function getPreviousRow(\ArrayObject $tableData): ?TableRowSeriousMoney
     {
         return $tableData->count() > 0 ? $tableData->offsetGet($tableData->count() - 1) : null;
     }

@@ -34,7 +34,7 @@ final readonly class TableRowSeriousMoney
         float $perpetualData,
         float $futureData
     ) {
-        $this->firstOperation = $previousRow === null ? $this : $previousRow->firstOperation;
+        $this->firstOperation = null === $previousRow ? $this : $previousRow->firstOperation;
         $this->strategy = $strategy;
         $this->date = $date;
         $this->perpetual = $perpetualData;
@@ -53,11 +53,12 @@ final readonly class TableRowSeriousMoney
             $this->totalDays = 0;
             $this->totalProfit = 0;
             $this->totalBtcDiff = 0;
+
             return;
         }
 
-        $this->days = (int)abs(round((strtotime($previousRow->date) - strtotime($date)) / 86400, 2));
-        $this->profit = ($previousRow->strategy === StrategyTypeSeriousMoney::Buy ? 1 : -1) * ($this->spread - $previousRow->spread);
+        $this->days = (int) abs(round((strtotime($previousRow->date) - strtotime($date)) / 86400, 2));
+        $this->profit = (StrategyTypeSeriousMoney::Buy === $previousRow->strategy ? 1 : -1) * ($this->spread - $previousRow->spread);
         $this->profitPercent = $this->profit / $previousRow->perpetual * 100;
         $this->profitMonth = $this->profitPercent * 30.473 / $this->days;
         $this->profitYear = $this->profitPercent * 365.25 / $this->days;
@@ -66,12 +67,13 @@ final readonly class TableRowSeriousMoney
 
         // Totals (bottom line)
         $this->totalDays = $this->days + $previousRow->totalDays;
-        if ($this->totalDays === 0) {
+        if (0 === $this->totalDays) {
             $this->totalProfit = 0;
             $this->totalProfitPercent = 0;
             $this->totalProfitPercentMonth = 0;
             $this->totalProfitPercentYear = 0;
             $this->totalBtcDiff = 0;
+
             return;
         }
         $this->totalProfit = $this->profit + $previousRow->totalProfit;

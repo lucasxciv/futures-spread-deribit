@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Notification;
 
-use JsonSerializable;
 use Telegram\Bot\Api;
 use Telegram\Bot\Objects\Chat;
 
-class NotificationStatus implements JsonSerializable
+class NotificationStatus implements \JsonSerializable
 {
     public NotificationRsiStateType $rsiState;
     public string $date;
@@ -21,7 +20,7 @@ class NotificationStatus implements JsonSerializable
     {
         $this->chat = $telegram->getChat(['chat_id' => $chatId]);
 
-        $arrDescription = explode(' | ', (string)$this->chat->description);
+        $arrDescription = explode(' | ', (string) $this->chat->description);
         $status = [];
         if (isset($arrDescription[1])) {
             $status = json_decode(base64_decode($arrDescription[1]), true, 512, JSON_THROW_ON_ERROR);
@@ -54,17 +53,17 @@ class NotificationStatus implements JsonSerializable
         $this->rsi = $rsi ?? $this->rsi;
         $this->btc = $btc ?? $this->btc;
 
-        $arrDescription = explode(' | ', (string)$this->chat->description);
+        $arrDescription = explode(' | ', (string) $this->chat->description);
         $newDescription = sprintf(
             '%s | %s',
-            trim($arrDescription[0]) === '' ? 'Future spread' : $arrDescription[0],
+            '' === trim($arrDescription[0]) ? 'Future spread' : $arrDescription[0],
             base64_encode(
                 json_encode(
                     [
                         'rsiState' => $this->rsiState->value,
                         'date' => $this->date,
                         'rsi' => $this->rsi,
-                        'btc' => $this->btc
+                        'btc' => $this->btc,
                     ],
                     JSON_THROW_ON_ERROR
                 )
