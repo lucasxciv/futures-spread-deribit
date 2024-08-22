@@ -41,6 +41,7 @@ final readonly class TableRowSeriousMoney
         $this->future = $futureData;
 
         $this->spread = $this->future - $this->perpetual;
+        $this->spreadPercent = $this->spread / $this->perpetual * 100;
 
         if (!$previousRow) {
             $this->days = 0;
@@ -48,7 +49,6 @@ final readonly class TableRowSeriousMoney
             $this->profitPercent = 0;
             $this->profitMonth = 0;
             $this->profitYear = 0;
-            $this->spreadPercent = 0;
             $this->btcDiff = 0;
             $this->totalDays = 0;
             $this->totalProfit = 0;
@@ -65,7 +65,6 @@ final readonly class TableRowSeriousMoney
         $this->profitPercent = $this->profit / $previousRow->perpetual * 100;
         $this->profitMonth = $this->profitPercent * 30.473 / $this->days;
         $this->profitYear = $this->profitPercent * 365.25 / $this->days;
-        $this->spreadPercent = $this->spread / $this->perpetual * 100;
         $this->btcDiff = round(($this->perpetual - $previousRow->perpetual) / $previousRow->perpetual * 100, 2);
 
         // Totals (bottom line)
