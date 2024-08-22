@@ -18,6 +18,10 @@ final readonly class NotificationNextStatus
     public NotificationActionType $actionType;
     public NotificationRsiStateType $rsiState;
 
+    /**
+     * @param \ArrayObject<string, float> $btcData
+     * @param \ArrayObject<int, float> $rsiDataBtc
+     */
     public function __construct(
         public NotificationStatus $status,
         public \DateTimeImmutable $time,

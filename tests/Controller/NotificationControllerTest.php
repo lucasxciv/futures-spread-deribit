@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FuturesSpreadUnitTest\Controller;
+namespace FuturesSpreadTest\Controller;
 
 use FuturesSpread\Controller\NotificationController;
 use FuturesSpread\Notification\NotificationMessage;
@@ -13,11 +13,6 @@ use PHPUnit\Framework\TestCase;
 use Telegram\Bot\Api;
 use Telegram\Bot\Objects\Chat;
 
-/**
- * @internal
- *
- * @coversNothing
- */
 final class NotificationControllerTest extends TestCase
 {
     #[Test]
@@ -31,8 +26,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 08:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([50, 52])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([50.0, 52.0])
             ),
             new NotificationMessage(
                 $apiTelegram,
@@ -65,8 +60,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 21:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([70, 72])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([70.0, 72.0])
             ),
             new NotificationMessage(
                 $apiTelegram,
@@ -99,8 +94,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 21:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([30, 28])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([30.0, 28.0])
             ),
             new NotificationMessage(
                 $apiTelegram,
@@ -145,8 +140,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 21:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([70, 72])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([70.0, 72.0])
             ),
             new NotificationMessage(
                 $apiTelegram,
@@ -191,8 +186,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 21:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([30, 28])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([30.0, 28.0])
             ),
             new NotificationMessage(
                 $apiTelegram,
@@ -225,8 +220,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 07:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([50, 52])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([50.0, 52.0])
             ),
             new NotificationMessage(
                 $apiTelegram,
@@ -271,8 +266,8 @@ final class NotificationControllerTest extends TestCase
             new NotificationNextStatus(
                 $status,
                 new \DateTimeImmutable('2024-01-02 08:10:00'),
-                new \ArrayObject(['2024-01-01' => 30000, '2024-01-02' => 32000]),
-                new \ArrayObject([50, 52])
+                new \ArrayObject(['2024-01-01' => 30000.0, '2024-01-02' => 32000.0]),
+                new \ArrayObject([50.0, 52.0])
             ),
             new NotificationMessage(
                 $apiTelegram,

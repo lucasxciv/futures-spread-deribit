@@ -70,7 +70,7 @@ final class TableSeriousMoney extends \ArrayObject
             return StrategyTypeSeriousMoney::Buy;
         }
 
-        if ((!$previousRow || StrategyTypeSeriousMoney::Buy === $previousRow?->strategy)
+        if ((!$previousRow || StrategyTypeSeriousMoney::Buy === $previousRow->strategy)
             && $rsiValue > RsiThresholdTypeSeriousMoney::UpperBand->value
         ) {
             return StrategyTypeSeriousMoney::Sell;

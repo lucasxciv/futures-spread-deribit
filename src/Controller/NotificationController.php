@@ -60,7 +60,5 @@ final readonly class NotificationController
                 'status' => $this->status->jsonSerialize(),
             ];
         }
-
-        throw new \LogicException('Invalid action type.');
     }
 }

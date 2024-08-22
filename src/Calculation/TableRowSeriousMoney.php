@@ -52,6 +52,9 @@ final readonly class TableRowSeriousMoney
             $this->btcDiff = 0;
             $this->totalDays = 0;
             $this->totalProfit = 0;
+            $this->totalProfitPercent = 0;
+            $this->totalProfitPercentMonth = 0;
+            $this->totalProfitPercentYear = 0;
             $this->totalBtcDiff = 0;
 
             return;

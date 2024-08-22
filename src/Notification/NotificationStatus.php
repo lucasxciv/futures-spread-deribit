@@ -78,6 +78,9 @@ class NotificationStatus implements \JsonSerializable
         }
     }
 
+    /**
+     * @return array{rsiState: string, date: string, rsi: float, btc: float}
+     */
     public function jsonSerialize(): array
     {
         return [

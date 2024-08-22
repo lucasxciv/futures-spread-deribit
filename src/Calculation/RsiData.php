@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace FuturesSpread\Calculation;
 
+/**
+ * @extends \ArrayObject<int, float>
+ */
 final class RsiData extends \ArrayObject
 {
     public function __construct(\ArrayObject $prices, int $period = 14)
