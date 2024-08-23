@@ -6,9 +6,6 @@ namespace FuturesSpread\Deribit;
 
 use FuturesSpread\Http\HttpRequest;
 
-/**
- * @extends \ArrayObject<string, float>
- */
 final class TradingViewChartData extends \ArrayObject
 {
     public function __construct(private readonly HttpRequest $httpRequest, TradingViewChartDataFilter $filter)

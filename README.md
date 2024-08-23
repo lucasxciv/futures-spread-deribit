@@ -44,7 +44,7 @@ Run container:
 docker run -p 8080:8080 futures-spread-deribit
 ```
 
-Access: http://localhost:8080.
+Access: http://localhost:8080
 
 ## Contributing ##
 
